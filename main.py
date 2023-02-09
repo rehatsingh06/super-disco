@@ -9,24 +9,24 @@ SOUND: mixer.Channel | None = None
 # TODO: Change pins
 # INPUTS
 
-a_major_input = gpiozero.DigitalInputDevice(17)
-a_sharp_input = gpiozero.DigitalInputDevice(17)
+a_major_input = gpiozero.Button(14)
+a_sharp_input = gpiozero.Button(17)
 
-b_major_input = gpiozero.DigitalInputDevice(18)
+b_major_input = gpiozero.Button(15)
 
-c_major_input = gpiozero.DigitalInputDevice(19)
-c_sharp_input = gpiozero.DigitalInputDevice(19)
+c_major_input = gpiozero.Button(18)
+c_sharp_input = gpiozero.Button(27)
 
-d_major_input = gpiozero.DigitalInputDevice(20)
-d_sharp_input = gpiozero.DigitalInputDevice(20)
+d_major_input = gpiozero.Button(23)
+d_sharp_input = gpiozero.Button(22)
 
-e_major_input = gpiozero.DigitalInputDevice(21)
+e_major_input = gpiozero.Button(24)
 
-f_major_input = gpiozero.DigitalInputDevice(22)
-f_sharp_input = gpiozero.DigitalInputDevice(22)
+f_major_input = gpiozero.Button(25)
+f_sharp_input = gpiozero.Button(10)
 
-g_major_input = gpiozero.DigitalInputDevice(23)
-g_sharp_input = gpiozero.DigitalInputDevice(23)
+g_major_input = gpiozero.Button(8)
+g_sharp_input = gpiozero.Button(9)
 
 
 # SOUNDS
@@ -52,21 +52,28 @@ g_sharp = mixer.Sound("notes/G_sharp.wav")
 
 
 a_major_input.when_activated = a_major.play
+a_sharp_input.when_activated = a_sharp.play
+
 b_major_input.when_activated = b_major.play
+
 c_major_input.when_activated = c_major.play
+c_sharp_input.when_activated = c_sharp.play
+
 d_major_input.when_activated = d_major.play
+d_sharp_input.when_activated = d_sharp.play
+
 e_major_input.when_activated = e_major.play
+
 f_major_input.when_activated = f_major.play
+f_sharp_input.when_activated = f_sharp.play
+
 g_major_input.when_activated = g_major.play
+g_sharp_input.when_activated = g_sharp.play
 
 
 def main():
-    # test
-    SOUND = a_major.play()
-
     while True:
-        if SOUND is not None and SOUND.get_busy():
-            time.delay(100)
+        time.delay(100)
 
 
 if __name__ == "__main__":
