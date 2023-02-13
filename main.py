@@ -1,3 +1,4 @@
+from typing import Callable
 import gpiozero
 from pygame import mixer, time
 
@@ -51,24 +52,32 @@ g_major = mixer.Sound("notes/G_major.wav")
 g_sharp = mixer.Sound("notes/G_sharp.wav")
 
 
-a_major_input.when_activated = a_major.play
-a_sharp_input.when_activated = a_sharp.play
+def play_sound(sound: mixer.Sound) -> Callable[[], None]:
+    def wrapped():
+        sound.play(fade_ms=3000)
+        print("Playing sound")
 
-b_major_input.when_activated = b_major.play
+    return wrapped
 
-c_major_input.when_activated = c_major.play
-c_sharp_input.when_activated = c_sharp.play
 
-d_major_input.when_activated = d_major.play
-d_sharp_input.when_activated = d_sharp.play
+a_major_input.when_activated = play_sound(a_major)
+a_sharp_input.when_activated = play_sound(a_sharp)
 
-e_major_input.when_activated = e_major.play
+b_major_input.when_activated = play_sound(b_major)
 
-f_major_input.when_activated = f_major.play
-f_sharp_input.when_activated = f_sharp.play
+c_major_input.when_activated = play_sound(c_major)
+c_sharp_input.when_activated = play_sound(c_sharp)
 
-g_major_input.when_activated = g_major.play
-g_sharp_input.when_activated = g_sharp.play
+d_major_input.when_activated = play_sound(d_major)
+d_sharp_input.when_activated = play_sound(d_sharp)
+
+e_major_input.when_activated = play_sound(e_major)
+
+f_major_input.when_activated = play_sound(f_major)
+f_sharp_input.when_activated = play_sound(f_sharp)
+
+g_major_input.when_activated = play_sound(g_major)
+g_sharp_input.when_activated = play_sound(g_sharp)
 
 
 def main():
