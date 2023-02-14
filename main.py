@@ -54,7 +54,8 @@ g_sharp = mixer.Sound("notes/G_sharp.wav")
 
 def play_sound(sound: mixer.Sound) -> Callable[[], None]:
     def wrapped():
-        sound.play(fade_ms=3000)
+        sound.play()
+        mixer.fadeout(4000)
         print("Playing sound")
 
     return wrapped
