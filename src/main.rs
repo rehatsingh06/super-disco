@@ -2,7 +2,7 @@ use std::error::Error;
 use std::fs::File;
 use std::io::BufReader;
 
-use rodio::Decoder;
+use rodio::{source::Source, Decoder, OutputStream};
 use rppal::{gpio::Gpio, system::DeviceInfo};
 
 fn load_sound_source(file_path: &str) -> Result<Decoder<BufReader<File>>, Box<dyn Error>> {
@@ -15,6 +15,8 @@ fn load_sound_source(file_path: &str) -> Result<Decoder<BufReader<File>>, Box<dy
 fn main() -> Result<(), Box<dyn Error>> {
     let device_info = DeviceInfo::new()?;
     println!("Device: {:?}\nStarting piano...", device_info);
+
+    let (_stream, stream_handle) = OutputStream::try_default()?;
 
     let a_major_sound = load_sound_source("notes/A_major.wav")?;
     let b_major_sound = load_sound_source("notes/B_major.wav")?;
@@ -29,6 +31,8 @@ fn main() -> Result<(), Box<dyn Error>> {
     let d_sharp_sound = load_sound_source("notes/D_sharp.wav")?;
     let f_sharp_sound = load_sound_source("notes/F_sharp.wav")?;
     let g_sharp_sound = load_sound_source("notes/G_sharp.wav")?;
+
+    stream_handle.play_raw(a_major_sound.convert_samples())?;
 
     Ok(())
 }
