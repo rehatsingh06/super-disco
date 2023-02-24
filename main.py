@@ -56,7 +56,7 @@ def play_sound(sound: mixer.Sound) -> Callable[[], None]:
     def wrapped():
         sound.play()
         mixer.fadeout(4000)
-        print("Playing sound")
+        #print("Playing sound")
 
     return wrapped
 
