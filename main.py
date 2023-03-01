@@ -1,8 +1,11 @@
 from typing import Callable
+from pathlib import Path
 import gpiozero
 from pygame import mixer, time
 
 mixer.init()
+
+NOTES_DIR = Path(__file__).parent / "notes"
 
 # Set this variable to play a sound
 SOUND: mixer.Channel | None = None
@@ -32,24 +35,24 @@ g_sharp_input = gpiozero.Button(9)
 
 # SOUNDS
 
-a_major = mixer.Sound("notes/A_major.wav")
-a_sharp = mixer.Sound("notes/A_sharp.wav")
+a_major = mixer.Sound(NOTES_DIR / "A_major.wav")
+a_sharp = mixer.Sound(NOTES_DIR / "A_sharp.wav")
 
-b_major = mixer.Sound("notes/B_major.wav")
+b_major = mixer.Sound(NOTES_DIR / "B_major.wav")
 
-c_major = mixer.Sound("notes/C_major.wav")
-c_sharp = mixer.Sound("notes/C_sharp.wav")
+c_major = mixer.Sound(NOTES_DIR / "C_major.wav")
+c_sharp = mixer.Sound(NOTES_DIR / "C_sharp.wav")
 
-d_major = mixer.Sound("notes/D_major.wav")
-d_sharp = mixer.Sound("notes/D_sharp.wav")
+d_major = mixer.Sound(NOTES_DIR / "D_major.wav")
+d_sharp = mixer.Sound(NOTES_DIR / "D_sharp.wav")
 
-e_major = mixer.Sound("notes/E_major.wav")
+e_major = mixer.Sound(NOTES_DIR / "E_major.wav")
 
-f_major = mixer.Sound("notes/F_major.wav")
-f_sharp = mixer.Sound("notes/F_sharp.wav")
+f_major = mixer.Sound(NOTES_DIR / "F_major.wav")
+f_sharp = mixer.Sound(NOTES_DIR / "F_sharp.wav")
 
-g_major = mixer.Sound("notes/G_major.wav")
-g_sharp = mixer.Sound("notes/G_sharp.wav")
+g_major = mixer.Sound(NOTES_DIR / "G_major.wav")
+g_sharp = mixer.Sound(NOTES_DIR / "G_sharp.wav")
 
 
 def play_sound(sound: mixer.Sound) -> Callable[[], None]:
